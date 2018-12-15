@@ -1,0 +1,41 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'sam-app
+
+  Sample SAM Template for sam-app
+
+  '
+Globals:
+  Function:
+    Timeout: 3
+Resources:
+  AccessTokenFunction:
+    Properties:
+      CodeUri: s3://oha-geruge-package/7c3880fd7f903f01e53d8db4d13e1b3d
+      Environment:
+        Variables:
+          PARAM1: VALUE
+      Events:
+        HelloWorld:
+          Properties:
+            Method: post
+            Path: /access_token
+          Type: Api
+      Handler: app.accessToken
+      Runtime: nodejs8.10
+    Type: AWS::Serverless::Function
+  RequestTokenFunction:
+    Properties:
+      CodeUri: s3://oha-geruge-package/7c3880fd7f903f01e53d8db4d13e1b3d
+      Environment:
+        Variables:
+          PARAM1: VALUE
+      Events:
+        HelloWorld:
+          Properties:
+            Method: post
+            Path: /request_token
+          Type: Api
+      Handler: app.requestToken
+      Runtime: nodejs8.10
+    Type: AWS::Serverless::Function
+Transform: AWS::Serverless-2016-10-31
