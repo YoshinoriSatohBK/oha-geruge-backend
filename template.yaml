@@ -7,39 +7,59 @@ Description: >
     
 # More info about Globals: https://github.com/awslabs/serverless-application-model/blob/master/docs/globals.rst
 Globals:
-    Function:
-        Timeout: 3
-
+  Function:
+      Timeout: 30
+  Api:
+    Cors:
+      AllowMethods: "'*'"
+      AllowHeaders: "'*'"
+      AllowOrigin: "'*'"
 
 Resources:
-    RequestTokenFunction:
-        Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
-        Properties:
-            CodeUri: twitter-auth/
-            Handler: app.requestToken
-            Runtime: nodejs8.10
-            Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
-                Variables:
-                    PARAM1: VALUE
-            Events:
-                HelloWorld:
-                    Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
-                    Properties:
-                        Path: /request_token
-                        Method: post
-
-    AccessTokenFunction:
-      Type: AWS::Serverless::Function # More info about Function Resource: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#awsserverlessfunction
-      Properties:
-        CodeUri: twitter-auth/
-        Handler: app.accessToken
-        Runtime: nodejs8.10
-        Environment: # More info about Env Vars: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#environment-object
-          Variables:
+  RequestTokenFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: twitter-auth/
+      Handler: app.requestToken
+      Runtime: nodejs8.10
+      Environment:
+        Variables:
             PARAM1: VALUE
-        Events:
-          HelloWorld:
-            Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
-            Properties:
-              Path: /access_token
-              Method: post
+      Events:
+        RequestToken:
+          Type: Api
+          Properties:
+            Path: /request_token
+            Method: post
+
+  AccessTokenFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: twitter-auth/
+      Handler: app.accessToken
+      Runtime: nodejs8.10
+      Environment:
+        Variables:
+          PARAM1: VALUE
+      Events:
+        AccessToken:
+          Type: Api
+          Properties:
+            Path: /access_token
+            Method: post
+
+  TweetFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: twitter-auth/
+      Handler: app.tweet
+      Runtime: nodejs8.10
+      Environment:
+        Variables:
+          PARAM1: VALUE
+      Events:
+        AccessToken:
+          Type: Api
+          Properties:
+            Path: /tweet
+            Method: post

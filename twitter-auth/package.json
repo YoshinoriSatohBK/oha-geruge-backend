@@ -8,7 +8,8 @@
   "license": "MIT",
   "dependencies": {
     "axios": "^0.18.0",
-    "oauth": "^0.9.15"
+    "oauth": "^0.9.15",
+    "twitter": "^1.7.1"
   },
   "scripts": {
     "test": "mocha tests/unit/"

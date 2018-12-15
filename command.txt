@@ -1,2 +1,0 @@
-sam package --template-file template.yaml --s3-bucket oha-geruge-package --output-template-file packaged.yaml --profile private
-sam deploy --template-file packaged.yaml --stack-name oha-geruge --capabilities CAPABILITY_IAM --profile private
