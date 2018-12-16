@@ -57,6 +57,9 @@ Resources:
       Environment:
         Variables:
           PARAM1: VALUE
+      Policies:
+        - S3ReadPolicy:
+            BucketName: oha-geruge-images
       Events:
         AccessToken:
           Type: Api
