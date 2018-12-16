@@ -35,7 +35,9 @@
 
 
 const OAuth = require('oauth').OAuth
-const Twitter = require('twitter');
+const Twitter = require('twitter')
+const AWS = require('aws-sdk')
+
 const config = {
     callbackURI: "https://musing-torvalds-d26081.netlify.com/callback",
     //callbackURI: "http://localhost:8001/callback",
@@ -144,14 +146,46 @@ exports.tweet = async (event, context, callback) => {
         const client = new Twitter({
             consumer_key: config.consumerKey,
             consumer_secret: config.consumerSecret,
+            // access_token_key: '1072830585935060992-vmRdFw3RlS43ffTT38rsrfolU9vS86',
+            // access_token_secret: 'qdl0TQqPJksMXn9G5GhghXzNDZSF61yMw4gSx50VH1S0O'
             access_token_key: requestBody.access_token_key,
             access_token_secret: requestBody.access_token_secret
         })
 
-
-        const responseBody = await new Promise((resolve, reject) => {
-            client.post('statuses/update', { status: 'おはゲルゲ' },  (error) => {
+        const s3 = new AWS.S3()
+        const objectList = await s3.listObjectsV2({
+            Bucket: "oha-geruge-images",
+        }).promise()
+        const object = objectList.Contents[Math.floor(Math.random() * objectList.Contents.length)]
+        const params = {
+            Bucket: "oha-geruge-images",
+            Key: object.Key
+        }
+        const imageData = await s3.getObject(params).promise()
+        const uploadResults = await new Promise((resolve, reject) => {
+            client.post('media/upload', { media_data: imageData.Body.toString('base64') },  (error, media, response) => {
                 if(error) {
+                    console.error(error)
+                    reject()
+                }
+
+                resolve({
+                    media: media,
+                    response: response
+                })
+            })
+        })
+        console.log(uploadResults.media)
+        console.log(uploadResults.media.media_id.toString())
+
+        await new Promise((resolve, reject) => {
+            client.post('statuses/update', {
+                status: requestBody.text,
+                // status: 'おはゲルーゲ\r#ディアブルボア',
+                media_ids: uploadResults.media.media_id_string
+            }, (error) => {
+                if(error) {
+                    console.error(error)
                     reject()
                 }
                 resolve()
