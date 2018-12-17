@@ -22,9 +22,6 @@ Resources:
       CodeUri: twitter-auth/
       Handler: app.requestToken
       Runtime: nodejs8.10
-      Environment:
-        Variables:
-            PARAM1: VALUE
       Events:
         RequestToken:
           Type: Api
@@ -38,9 +35,6 @@ Resources:
       CodeUri: twitter-auth/
       Handler: app.accessToken
       Runtime: nodejs8.10
-      Environment:
-        Variables:
-          PARAM1: VALUE
       Events:
         AccessToken:
           Type: Api
@@ -48,15 +42,25 @@ Resources:
             Path: /access_token
             Method: post
 
+  GetUserFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: twitter-auth/
+      Handler: app.getUser
+      Runtime: nodejs8.10
+      Events:
+        AccessToken:
+          Type: Api
+          Properties:
+            Path: /get_user
+            Method: get
+
   TweetFunction:
     Type: AWS::Serverless::Function
     Properties:
       CodeUri: twitter-auth/
       Handler: app.tweet
       Runtime: nodejs8.10
-      Environment:
-        Variables:
-          PARAM1: VALUE
       Policies:
         - S3ReadPolicy:
             BucketName: oha-geruge-images

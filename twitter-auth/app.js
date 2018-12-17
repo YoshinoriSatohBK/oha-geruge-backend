@@ -140,6 +140,45 @@ exports.accessToken = async (event, context, callback) => {
     }
 }
 
+
+exports.getUser = async (event, context, callback) => {
+    try {
+        const requestBody = JSON.parse(event.body)
+        const client = new Twitter({
+            consumer_key: config.consumerKey,
+            consumer_secret: config.consumerSecret,
+            // access_token_key: '1072830585935060992-vmRdFw3RlS43ffTT38rsrfolU9vS86',
+            // access_token_secret: 'qdl0TQqPJksMXn9G5GhghXzNDZSF61yMw4gSx50VH1S0O'
+            access_token_key: requestBody.access_token_key,
+            access_token_secret: requestBody.access_token_secret
+        })
+
+        const res = await new Promise((resolve, reject) => {
+            client.get('account/verify_credentials',{}, (error, res) => {
+                if(error) {
+                    console.error(error)
+                    reject(error)
+                }
+                resolve(res)
+            })
+        })
+
+        return({
+            statusCode: 200,
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Origin': '*'
+            },
+            body:JSON.stringify(res)
+        })
+    } catch (err) {
+        console.error('error')
+        console.error(err)
+        callback(err)
+    }
+}
+
+
 exports.tweet = async (event, context, callback) => {
     try {
         const requestBody = JSON.parse(event.body)

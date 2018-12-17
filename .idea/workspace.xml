@@ -3,9 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9d864426-b0e7-47f2-b975-b6ad556d716c" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/template.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/template.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/twitter-auth/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/twitter-auth/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twitter-auth/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/twitter-auth/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/twitter-auth/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/twitter-auth/yarn.lock" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -17,7 +16,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6036284">
+    <splitter split-orientation="horizontal" split-proportion="0.50192416">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file pinned="false" current-in-tab="false">
@@ -41,8 +40,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/template.yaml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="510">
-                  <caret line="34" column="2" selection-start-line="34" selection-start-column="2" selection-end-line="34" selection-end-column="2" />
+                <state relative-caret-position="465">
+                  <caret line="31" column="2" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="2" />
                 </state>
               </provider>
             </entry>
@@ -64,8 +63,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/twitter-auth/app.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1520">
-                  <caret line="183" column="19" selection-start-line="183" selection-start-column="19" selection-end-line="183" selection-end-column="19" />
+                <state relative-caret-position="183">
+                  <caret line="163" column="10" selection-start-line="163" selection-start-column="10" selection-end-line="163" selection-end-column="10" />
                 </state>
               </provider>
             </entry>
@@ -82,8 +81,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/template.yaml">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="150">
-                  <caret line="10" column="17" selection-start-line="10" selection-start-column="17" selection-end-line="10" selection-end-column="17" />
+                <state relative-caret-position="516">
+                  <caret line="51" column="20" lean-forward="true" selection-start-line="51" selection-start-column="20" selection-end-line="51" selection-end-column="20" />
                 </state>
               </provider>
             </entry>
@@ -106,9 +105,9 @@
       <list>
         <option value="$PROJECT_DIR$/command.txt" />
         <option value="$PROJECT_DIR$/deploy.sh" />
-        <option value="$PROJECT_DIR$/template.yaml" />
-        <option value="$PROJECT_DIR$/template.yaml" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/template.yaml" />
+        <option value="$PROJECT_DIR$/template.yaml" />
         <option value="$PROJECT_DIR$/twitter-auth/app.js" />
       </list>
     </option>
@@ -173,7 +172,9 @@
       <workItem from="1544916354717" duration="2518000" />
       <workItem from="1544924545370" duration="2000" />
       <workItem from="1544951233150" duration="1166000" />
-      <workItem from="1544959859605" duration="3685000" />
+      <workItem from="1544959859605" duration="5387000" />
+      <workItem from="1544975063234" duration="207000" />
+      <workItem from="1545045623625" duration="2295000" />
     </task>
     <task id="LOCAL-00001" summary="update">
       <created>1544917631243</created>
@@ -182,11 +183,25 @@
       <option name="project" value="LOCAL" />
       <updated>1544917631243</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="update">
+      <created>1544970162893</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1544970162893</updated>
+    </task>
+    <task id="LOCAL-00003" summary="update">
+      <created>1544973081976</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1544973081976</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="28170000" />
+    <option name="totallyTimeSpent" value="32374000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="2048" height="1152" extended-state="0" />
@@ -203,7 +218,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" />
-      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4997367" weight="0.32970297" />
+      <window_info anchor="bottom" id="Version Control" order="8" sideWeight="0.4997367" weight="0.32902032" />
       <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4982733" visible="true" weight="0.27079484" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.5017267" side_tool="true" weight="0.27079484" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -262,15 +277,15 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/template.yaml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="34" column="2" selection-start-line="34" selection-start-column="2" selection-end-line="34" selection-end-column="2" />
+        <state relative-caret-position="465">
+          <caret line="31" column="2" selection-start-line="31" selection-start-column="2" selection-end-line="31" selection-end-column="2" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/twitter-auth/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1520">
-          <caret line="183" column="19" selection-start-line="183" selection-start-column="19" selection-end-line="183" selection-end-column="19" />
+        <state relative-caret-position="183">
+          <caret line="163" column="10" selection-start-line="163" selection-start-column="10" selection-end-line="163" selection-end-column="10" />
         </state>
       </provider>
     </entry>
