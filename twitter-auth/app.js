@@ -39,10 +39,9 @@ const Twitter = require('twitter')
 const AWS = require('aws-sdk')
 
 const config = {
-    callbackURI: "https://musing-torvalds-d26081.netlify.com/callback",
-    //callbackURI: "http://localhost:8001/callback",
-    consumerKey: "F3JqpRLaTH8i54IgFQeF8YMkX",
-    consumerSecret: "ohtDOm8w5QVMnVngp93ziI6oN8ypMvEgILv5sAwrGRYcnIhETD"
+    callbackURI: process.env.CALLBACK_URI,
+    consumerKey: process.env.CONSUMER_KEY,
+    consumerSecret: process.env.CONSUMER_SECRET
 }
 
 exports.requestToken = async (event, context, callback) => {
@@ -73,12 +72,13 @@ exports.requestToken = async (event, context, callback) => {
                 }
             })
         })
-        console.log(body)
+
         return({
             statusCode: 200,
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': '*'
             },
             body: JSON.stringify(body)
         })
@@ -100,9 +100,7 @@ exports.accessToken = async (event, context, callback) => {
             "HMAC-SHA1"
         )
 
-        console.log(event)
         const requestBody = JSON.parse(event.body)
-        console.log(requestBody)
 
         const responseBody = await new Promise((resolve, reject) => {
             oauth.getOAuthAccessToken(
@@ -143,14 +141,11 @@ exports.accessToken = async (event, context, callback) => {
 
 exports.getUser = async (event, context, callback) => {
     try {
-        const requestBody = JSON.parse(event.body)
         const client = new Twitter({
             consumer_key: config.consumerKey,
             consumer_secret: config.consumerSecret,
-            // access_token_key: '1072830585935060992-vmRdFw3RlS43ffTT38rsrfolU9vS86',
-            // access_token_secret: 'qdl0TQqPJksMXn9G5GhghXzNDZSF61yMw4gSx50VH1S0O'
-            access_token_key: requestBody.access_token_key,
-            access_token_secret: requestBody.access_token_secret
+            access_token_key: event.queryStringParameters.access_token_key,
+            access_token_secret: event.queryStringParameters.access_token_secret
         })
 
         const res = await new Promise((resolve, reject) => {
@@ -167,7 +162,8 @@ exports.getUser = async (event, context, callback) => {
             statusCode: 200,
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': '*'
             },
             body:JSON.stringify(res)
         })
@@ -185,8 +181,6 @@ exports.tweet = async (event, context, callback) => {
         const client = new Twitter({
             consumer_key: config.consumerKey,
             consumer_secret: config.consumerSecret,
-            // access_token_key: '1072830585935060992-vmRdFw3RlS43ffTT38rsrfolU9vS86',
-            // access_token_secret: 'qdl0TQqPJksMXn9G5GhghXzNDZSF61yMw4gSx50VH1S0O'
             access_token_key: requestBody.access_token_key,
             access_token_secret: requestBody.access_token_secret
         })
@@ -220,7 +214,6 @@ exports.tweet = async (event, context, callback) => {
         await new Promise((resolve, reject) => {
             client.post('statuses/update', {
                 status: requestBody.text,
-                // status: 'おはゲルーゲ\r#ディアブルボア',
                 media_ids: uploadResults.media.media_id_string
             }, (error) => {
                 if(error) {
@@ -235,7 +228,8 @@ exports.tweet = async (event, context, callback) => {
             statusCode: 200,
             headers: {
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Headers': '*'
             },
             body: ''
         })
